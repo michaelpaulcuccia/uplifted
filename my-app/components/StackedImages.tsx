@@ -17,22 +17,6 @@ const Layer = styled.img`
   height: 100%;
 `;
 
-// Button for toggling swatch visibility
-const ToggleButton = styled.button`
-  margin-top: 20px;
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #007aff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #005bb5;
-  }
-`;
-
 // Tile container for the clickable image tiles
 const TileContainer = styled.div`
   display: flex;
@@ -55,53 +39,37 @@ const Tile = styled.div<{ bgsrc: string }>`
 `;
 
 const StackedImages: React.FC = () => {
+  // State to manage which swatch is selected and if the swatch layer should be shown
   const [showSwatch, setShowSwatch] = useState(false);
   const [selectedSwatch, setSelectedSwatch] = useState<string>("bamboo-dark");
 
+  // Handle tile click to update the swatch and toggle visibility
   const handleTileClick = (tile: string) => {
     setSelectedSwatch(tile);
-  };
-
-  const toggleSwatch = () => {
-    setShowSwatch((prev) => !prev);
+    setShowSwatch(true); // Show the swatch layer when a tile is clicked
   };
 
   return (
     <div>
       <StackedContainer>
         {/* Conditional rendering for showing layers based on showSwatch */}
-        {showSwatch ? (
+        <Layer
+          src="/deskviews/homepage-desk-build-frame-gray.webp"
+          alt="Build Frame"
+        />
+        {showSwatch && (
           <>
-            <Layer
-              src="/deskviews/homepage-desk-build-frame-gray.webp"
-              alt="Build Frame"
-            />
             <Layer
               src={`/swatches/homepage-desk-build-desktop-${selectedSwatch}.webp`}
               alt="Swatch Layer"
             />
-            <Layer
-              src="/deskviews/homepage-desk-build-accessories.webp"
-              alt="Desktop Build"
-            />
-          </>
-        ) : (
-          <>
-            <Layer
-              src="/deskviews/homepage-desk-build-frame-gray.webp"
-              alt="Build Frame"
-            />
-            <Layer
-              src="/deskviews/homepage-desk-build-accessories.webp"
-              alt="Desktop Build"
-            />
           </>
         )}
+        <Layer
+          src="/deskviews/homepage-desk-build-accessories.webp"
+          alt="Desktop Build"
+        />
       </StackedContainer>
-
-      <ToggleButton onClick={toggleSwatch}>
-        {showSwatch ? "Hide Swatch" : "Show Swatch"}
-      </ToggleButton>
 
       {/* Tile row with available swatches */}
       <TileContainer>

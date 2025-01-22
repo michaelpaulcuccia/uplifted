@@ -33,9 +33,15 @@ const Tile = styled.img`
   }
 `;
 
+const SelectedSwatchName = styled.div`
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+`;
+
 const StackedImages: React.FC = () => {
-  const [showSwatch, setShowSwatch] = useState(false);
-  const [selectedSwatch, setSelectedSwatch] = useState<string>("");
+  // Initial swatch set to "bamboo-dark"
+  const [selectedSwatch, setSelectedSwatch] = useState<string>("bamboo-dark");
 
   const tiles = [
     "bamboo-dark",
@@ -46,41 +52,37 @@ const StackedImages: React.FC = () => {
   ];
 
   const handleTileClick = (tile: string) => {
-    setSelectedSwatch(tile);
-    setShowSwatch(true);
+    setSelectedSwatch(tile); // Update selected swatch when a tile is clicked
+  };
+
+  // Function to format the selected swatch name
+  const formatSwatchName = (swatch: string) => {
+    return swatch
+      .replace(/-/g, " ") // Replace "-" with space
+      .toUpperCase(); // Convert to uppercase
   };
 
   return (
     <div>
       <StackedContainer>
-        {showSwatch ? (
-          <>
-            <Layer
-              src="/deskviews/homepage-desk-build-frame-gray.webp"
-              alt="Build Frame"
-            />
-            <Layer
-              src={`/swatches/homepage-desk-build-desktop-${selectedSwatch}.webp`}
-              alt="Swatch Layer"
-            />
-            <Layer
-              src="/deskviews/homepage-desk-build-accessories.webp"
-              alt="Desktop Build"
-            />
-          </>
-        ) : (
-          <>
-            <Layer
-              src="/deskviews/homepage-desk-build-frame-gray.webp"
-              alt="Build Frame"
-            />
-            <Layer
-              src="/deskviews/homepage-desk-build-accessories.webp"
-              alt="Desktop Build"
-            />
-          </>
-        )}
+        {/* Always display the selected swatch */}
+        <Layer
+          src="/deskviews/homepage-desk-build-frame-gray.webp"
+          alt="Build Frame"
+        />
+        <Layer
+          src={`/swatches/homepage-desk-build-desktop-${selectedSwatch}.webp`}
+          alt="Swatch Layer"
+        />
+        <Layer
+          src="/deskviews/homepage-desk-build-accessories.webp"
+          alt="Desktop Build"
+        />
       </StackedContainer>
+
+      <SelectedSwatchName>
+        Selected Swatch: {formatSwatchName(selectedSwatch)}
+      </SelectedSwatchName>
 
       <TilesContainer>
         {tiles.map((tile) => (

@@ -3,8 +3,10 @@ import styled from "styled-components";
 
 const StackedContainer = styled.div`
   position: relative;
-  width: auto;
+  width: 100%;
+  max-width: 1500px;
   height: 400px;
+  margin: 0 auto;
 `;
 
 const Layer = styled.img`
@@ -12,12 +14,14 @@ const Layer = styled.img`
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: auto; /* Maintain aspect ratio */
 `;
 
 const TilesContainer = styled.div`
   display: flex;
   margin-top: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
 `;
 
 const Tile = styled.img`
@@ -27,7 +31,6 @@ const Tile = styled.img`
   cursor: pointer;
   transition: border 0.3s ease-in-out;
 
-  /* Conditional styles applied via className or inline style */
   &.selected {
     border: 3px solid rgb(6, 167, 234);
   }
@@ -37,10 +40,10 @@ const SelectedSwatchName = styled.div`
   margin-top: 20px;
   font-size: 18px;
   font-weight: bold;
+  text-align: center;
 `;
 
 const StackedImages: React.FC = () => {
-  // Initial swatch set to "bamboo-dark"
   const [selectedSwatch, setSelectedSwatch] = useState<string>("bamboo-dark");
 
   const tiles = [
@@ -52,20 +55,16 @@ const StackedImages: React.FC = () => {
   ];
 
   const handleTileClick = (tile: string) => {
-    setSelectedSwatch(tile); // Update selected swatch when a tile is clicked
+    setSelectedSwatch(tile);
   };
 
-  // Function to format the selected swatch name
   const formatSwatchName = (swatch: string) => {
-    return swatch
-      .replace(/-/g, " ") // Replace "-" with space
-      .toUpperCase(); // Convert to uppercase
+    return swatch.replace(/-/g, " ").toUpperCase();
   };
 
   return (
     <div>
       <StackedContainer>
-        {/* Always display the selected swatch */}
         <Layer
           src="/deskviews/homepage-desk-build-frame-gray.webp"
           alt="Build Frame"

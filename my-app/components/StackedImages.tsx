@@ -36,11 +36,8 @@ const Tile = styled.img`
   }
 `;
 
-const SelectedSwatchName = styled.div`
-  margin-top: 20px;
-  font-size: 18px;
-  font-weight: bold;
-  text-align: center;
+const ContentContainer = styled.div`
+  background: yellow;
 `;
 
 const StackedImages: React.FC = () => {
@@ -78,22 +75,21 @@ const StackedImages: React.FC = () => {
           alt="Desktop Build"
         />
       </StackedContainer>
+      <ContentContainer>
+        <p>{formatSwatchName(selectedSwatch)} 1" THICK</p>
 
-      <SelectedSwatchName>
-        Selected Swatch: {formatSwatchName(selectedSwatch)}
-      </SelectedSwatchName>
-
-      <TilesContainer>
-        {tiles.map((tile) => (
-          <Tile
-            key={tile}
-            src={`/tiles/${tile}.webp`}
-            alt={tile}
-            className={tile === selectedSwatch ? "selected" : ""}
-            onClick={() => handleTileClick(tile)}
-          />
-        ))}
-      </TilesContainer>
+        <TilesContainer>
+          {tiles.map((tile) => (
+            <Tile
+              key={tile}
+              src={`/tiles/${tile}.webp`}
+              alt={tile}
+              className={tile === selectedSwatch ? "selected" : ""}
+              onClick={() => handleTileClick(tile)}
+            />
+          ))}
+        </TilesContainer>
+      </ContentContainer>
     </div>
   );
 };

@@ -5,8 +5,10 @@ const StackedContainer = styled.div`
   position: relative;
   width: 100%;
   max-width: 1500px;
-  height: 400px;
+  height: 0;
+  padding-bottom: 56.25%; /* Maintain a 16:9 aspect ratio (height = width * 9 / 16) */
   margin: 0 auto;
+  background-color: #ccc;
 `;
 
 const Layer = styled.img`
@@ -14,7 +16,8 @@ const Layer = styled.img`
   top: 0;
   left: 0;
   width: 100%;
-  height: auto; /* Maintain aspect ratio */
+  height: 100%;
+  object-fit: contain; /* Prevent distortion of images */
 `;
 
 const TilesContainer = styled.div`
@@ -37,7 +40,8 @@ const Tile = styled.img`
 `;
 
 const ContentContainer = styled.div`
-  background: yellow;
+  text-align: center;
+  margin-top: 20px;
 `;
 
 const StackedImages: React.FC = () => {
@@ -75,6 +79,7 @@ const StackedImages: React.FC = () => {
           alt="Desktop Build"
         />
       </StackedContainer>
+
       <ContentContainer>
         <p>{formatSwatchName(selectedSwatch)} 1" THICK</p>
 

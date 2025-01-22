@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-// Container for stacking images
 const StackedContainer = styled.div`
   position: relative;
   width: auto;
   height: 400px;
 `;
 
-// Image layer that will be stacked
 const Layer = styled.img`
   position: absolute;
   top: 0;
@@ -17,76 +15,84 @@ const Layer = styled.img`
   height: 100%;
 `;
 
-// Tile container for the clickable image tiles
-const TileContainer = styled.div`
+const TilesContainer = styled.div`
   display: flex;
-  gap: 10px;
   margin-top: 20px;
 `;
 
-const Tile = styled.div<{ bgsrc: string }>`
+const Tile = styled.img`
   width: 50px;
   height: 50px;
-  background-image: url(${(props) => props.bgsrc});
-  background-size: cover;
-  background-position: center;
+  margin: 5px;
   cursor: pointer;
-  border: 2px solid transparent;
+  transition: border 0.3s ease-in-out;
 
-  &:hover {
-    border-color: #007aff;
+  /* Conditional styles applied via className or inline style */
+  &.selected {
+    border: 3px solid rgb(6, 167, 234);
   }
 `;
 
 const StackedImages: React.FC = () => {
-  // State to manage which swatch is selected and if the swatch layer should be shown
   const [showSwatch, setShowSwatch] = useState(false);
-  const [selectedSwatch, setSelectedSwatch] = useState<string>("bamboo-dark");
+  const [selectedSwatch, setSelectedSwatch] = useState<string>("");
 
-  // Handle tile click to update the swatch and toggle visibility
+  const tiles = [
+    "bamboo-dark",
+    "laminate-ashgray",
+    "laminate-cherry",
+    "laminate-heritage-oak",
+    "laminate-maple",
+  ];
+
   const handleTileClick = (tile: string) => {
     setSelectedSwatch(tile);
-    setShowSwatch(true); // Show the swatch layer when a tile is clicked
+    setShowSwatch(true);
   };
 
   return (
     <div>
       <StackedContainer>
-        {/* Conditional rendering for showing layers based on showSwatch */}
-        <Layer
-          src="/deskviews/homepage-desk-build-frame-gray.webp"
-          alt="Build Frame"
-        />
-        {showSwatch && (
+        {showSwatch ? (
           <>
+            <Layer
+              src="/deskviews/homepage-desk-build-frame-gray.webp"
+              alt="Build Frame"
+            />
             <Layer
               src={`/swatches/homepage-desk-build-desktop-${selectedSwatch}.webp`}
               alt="Swatch Layer"
             />
+            <Layer
+              src="/deskviews/homepage-desk-build-accessories.webp"
+              alt="Desktop Build"
+            />
+          </>
+        ) : (
+          <>
+            <Layer
+              src="/deskviews/homepage-desk-build-frame-gray.webp"
+              alt="Build Frame"
+            />
+            <Layer
+              src="/deskviews/homepage-desk-build-accessories.webp"
+              alt="Desktop Build"
+            />
           </>
         )}
-        <Layer
-          src="/deskviews/homepage-desk-build-accessories.webp"
-          alt="Desktop Build"
-        />
       </StackedContainer>
 
-      {/* Tile row with available swatches */}
-      <TileContainer>
-        {[
-          "bamboo-dark",
-          "laminate-ashgray",
-          "laminate-cherry",
-          "laminate-heritage-oak",
-          "laminate-maple",
-        ].map((tile) => (
+      <TilesContainer>
+        {tiles.map((tile) => (
           <Tile
             key={tile}
-            bgsrc={`/tiles/${tile}.webp`}
+            src={`/tiles/${tile}.webp`}
+            alt={tile}
+            className={tile === selectedSwatch ? "selected" : ""}
             onClick={() => handleTileClick(tile)}
           />
         ))}
-      </TileContainer>
+      </TilesContainer>
     </div>
   );
 };

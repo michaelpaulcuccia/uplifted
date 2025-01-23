@@ -31,6 +31,54 @@ export const HoverDiv = styled.div`
   }
 `;
 
+export const FlexRow = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const IconWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+
+  svg {
+    font-size: 28px;
+    transition: font-size 0.3s ease;
+
+    @media (max-width: 968px) {
+      font-size: 22px;
+    }
+  }
+`;
+
+export const ExpandableContent = styled.div`
+  display: flex;
+`;
+
+export const Column = styled.div`
+  margin: 0 30px;
+`;
+
+export const Headline = styled.h3`
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+`;
+
+export const Item = styled.li`
+  list-style: none;
+  font-size: 1rem;
+  margin-bottom: 5px;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+    color: #007aff;
+  }
+`;
+
 export const data = [
   {
     name: "Featured",

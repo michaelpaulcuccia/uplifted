@@ -7,13 +7,16 @@ import Logo from "../../public/brand/upliftHeaderLogo.svg";
 import { PiMagnifyingGlassThin } from "react-icons/pi";
 import { CiUser } from "react-icons/ci";
 import { CiShoppingCart } from "react-icons/ci";
-import { HoverDiv, data } from "./Components";
-
-const FlexRow = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
+import {
+  HoverDiv,
+  FlexRow,
+  IconWrapper,
+  ExpandableContent,
+  Column,
+  Headline,
+  Item,
+  data,
+} from "./Components";
 
 const ExpandableBox = styled.div<{ $isvisible: boolean }>`
   position: absolute;
@@ -26,48 +29,6 @@ const ExpandableBox = styled.div<{ $isvisible: boolean }>`
   z-index: 10;
   border-top: 1px solid #ddd;
   display: ${({ $isvisible }) => ($isvisible ? "block" : "none")};
-`;
-
-const IconWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 16px;
-
-  svg {
-    font-size: 28px;
-    transition: font-size 0.3s ease;
-
-    @media (max-width: 968px) {
-      font-size: 22px;
-    }
-  }
-`;
-
-const ExpandableContent = styled.div`
-  display: flex;
-  gap: 20px;
-`;
-
-const Column = styled.div`
-  flex: 1;
-`;
-
-const Headline = styled.h3`
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-bottom: 10px;
-`;
-
-const Item = styled.li`
-  list-style: none;
-  font-size: 1rem;
-  margin-bottom: 5px;
-  cursor: pointer;
-
-  &:hover {
-    text-decoration: underline;
-    color: #007aff;
-  }
 `;
 
 export default function NavBar() {

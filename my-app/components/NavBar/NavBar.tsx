@@ -35,14 +35,23 @@ export default function NavBar() {
   const [activeTab, setActiveTab] = useState<string | null>(null);
   const [boxVisible, setBoxVisible] = useState<boolean>(false);
 
-  const handleMouseEnter = (tabName: string) => {
-    setActiveTab(tabName);
-    setBoxVisible(true);
+  const handleHoverOrClick = (tabName: string) => {
+    if (activeTab === tabName) {
+      // Close the box if clicking the currently active tab
+      setBoxVisible(false);
+      setActiveTab(null);
+    } else {
+      // Open or switch content
+      setBoxVisible(true);
+      setActiveTab(tabName);
+    }
   };
 
-  const handleMouseLeave = () => {
-    setBoxVisible(false);
-    setActiveTab(null);
+  const handleHover = (tabName: string) => {
+    // Update content on hover if the box is already open
+    if (boxVisible && activeTab !== tabName) {
+      setActiveTab(tabName);
+    }
   };
 
   const activeTabData = data.find((category) => category.name === activeTab);
@@ -65,8 +74,8 @@ export default function NavBar() {
           ].map((tab) => (
             <HoverDiv
               key={tab}
-              onMouseEnter={() => handleMouseEnter(tab)}
-              onMouseLeave={handleMouseLeave}
+              onClick={() => handleHoverOrClick(tab)}
+              onMouseEnter={() => handleHover(tab)}
             >
               {tab}
             </HoverDiv>

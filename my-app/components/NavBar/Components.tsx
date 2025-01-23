@@ -21,7 +21,6 @@ export const HoverDiv = styled.div`
     transform-origin: center;
   }
 
-  /* On hover, expand the line */
   &:hover::after {
     transform: translateX(-50%) scaleX(1);
   }

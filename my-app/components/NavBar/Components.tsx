@@ -75,7 +75,7 @@ export const Item = styled.li`
 
   &:hover {
     text-decoration: underline;
-    color: #007aff;
+    color: rgb(6, 167, 234);
   }
 `;
 

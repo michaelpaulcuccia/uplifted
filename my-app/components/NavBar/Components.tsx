@@ -30,3 +30,97 @@ export const HoverDiv = styled.div`
     margin: 0 4px;
   }
 `;
+
+export const data = [
+  {
+    name: "Featured",
+    data: [
+      {
+        headline: "Featured",
+        items: ["Standing Desks", "What's New", "Best Sellers"],
+      },
+      {
+        headline: "Collections",
+        items: ["MoPac Storage", "Uplift Spaces"],
+      },
+    ],
+  },
+  {
+    name: "Desks",
+    data: [
+      {
+        headline: "Desks",
+        items: ["Standing Desks", "Frame Desks", "Electric Desks"],
+      },
+      {
+        headline: "Tables",
+        items: ["Conference Tables", "Fixed Height Tables"],
+      },
+    ],
+  },
+  {
+    name: "Seating",
+    data: [
+      {
+        headline: "Seating",
+        items: ["Ergonomic Chairs", "Stools"],
+      },
+      {
+        headline: "Lounge Seating",
+        items: ["Dillio Lounge Collection", "SoCal Lounge Collection"],
+      },
+    ],
+  },
+  {
+    name: "Accessories",
+    data: [
+      {
+        headline: "Featured",
+        items: ["Standing Desks", "What's New", "Best Sellers"],
+      },
+      {
+        headline: "Collections",
+        items: ["MoPac Storage", "Uplift Spaces"],
+      },
+    ],
+  },
+  {
+    name: "Team Office",
+    data: [
+      {
+        headline: "Desks",
+        items: ["Standing Desks", "Frame Desks", "Electric Desks"],
+      },
+      {
+        headline: "Tables",
+        items: ["Conference Tables", "Fixed Height Tables"],
+      },
+    ],
+  },
+  {
+    name: "Support",
+    data: [
+      {
+        headline: "Desk Help",
+        items: ["Assembly", "Programming"],
+      },
+      {
+        headline: "Guides",
+        items: ["Product Comparison", "Chair Comparison"],
+      },
+    ],
+  },
+  {
+    name: "Sale",
+    data: [
+      {
+        headline: "Limited Time Offers",
+        items: ["Sale"],
+      },
+      {
+        headline: "Clearance",
+        items: ["Shop all clearance"],
+      },
+    ],
+  },
+];

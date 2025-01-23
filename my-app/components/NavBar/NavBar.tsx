@@ -7,7 +7,7 @@ import Logo from "../../public/brand/upliftHeaderLogo.svg";
 import { PiMagnifyingGlassThin } from "react-icons/pi";
 import { CiUser } from "react-icons/ci";
 import { CiShoppingCart } from "react-icons/ci";
-import { HoverDiv } from "./Components";
+import { HoverDiv, data } from "./Components";
 
 const FlexRow = styled.div`
   display: flex;
@@ -22,10 +22,10 @@ const ExpandableBox = styled.div<{ $isvisible: boolean }>`
   width: 100%;
   background-color: #f5f5f5;
   overflow: hidden;
-  height: ${({ $isvisible }) => ($isvisible ? "200px" : "0")};
-  transition: height 0.3s ease;
-  padding: ${({ $isvisible }) => ($isvisible ? "20px" : "0 20px")};
+  padding: ${({ $isvisible }) => ($isvisible ? "20px" : "0")};
   z-index: 10;
+  border-top: 1px solid #ddd;
+  display: ${({ $isvisible }) => ($isvisible ? "block" : "none")};
 `;
 
 const IconWrapper = styled.div`
@@ -43,26 +43,48 @@ const IconWrapper = styled.div`
   }
 `;
 
+const ExpandableContent = styled.div`
+  display: flex;
+  gap: 20px;
+`;
+
+const Column = styled.div`
+  flex: 1;
+`;
+
+const Headline = styled.h3`
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+`;
+
+const Item = styled.li`
+  list-style: none;
+  font-size: 1rem;
+  margin-bottom: 5px;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+    color: #007aff;
+  }
+`;
+
 export default function NavBar() {
   const [activeTab, setActiveTab] = useState<string | null>(null);
-  const [isBoxOpen, setIsBoxOpen] = useState(false);
+  const [boxVisible, setBoxVisible] = useState<boolean>(false);
 
-  const handleTabClick = (tabName: string) => {
-    // Toggle tab content visibility
-    if (activeTab === tabName) {
-      setIsBoxOpen(false);
-      setActiveTab(null);
-    } else {
-      setIsBoxOpen(true);
-      setActiveTab(tabName);
-    }
+  const handleMouseEnter = (tabName: string) => {
+    setActiveTab(tabName);
+    setBoxVisible(true);
   };
 
-  const handleTabHover = (tabName: string) => {
-    if (isBoxOpen) {
-      setActiveTab(tabName); // Update content if box is open
-    }
+  const handleMouseLeave = () => {
+    setBoxVisible(false);
+    setActiveTab(null);
   };
+
+  const activeTabData = data.find((category) => category.name === activeTab);
 
   return (
     <>
@@ -82,22 +104,37 @@ export default function NavBar() {
           ].map((tab) => (
             <HoverDiv
               key={tab}
-              onClick={() => handleTabClick(tab)}
-              onMouseEnter={() => handleTabHover(tab)}
+              onMouseEnter={() => handleMouseEnter(tab)}
+              onMouseLeave={handleMouseLeave}
             >
               {tab}
             </HoverDiv>
           ))}
         </FlexRow>
-        <IconWrapper>
-          <PiMagnifyingGlassThin />
-          <CiUser />
-          <CiShoppingCart />
-        </IconWrapper>
+        <FlexRow>
+          <IconWrapper>
+            <PiMagnifyingGlassThin />
+            <CiUser />
+            <CiShoppingCart />
+          </IconWrapper>
+        </FlexRow>
       </FlexRow>
 
-      <ExpandableBox $isvisible={isBoxOpen}>
-        {activeTab ? <p>{activeTab} Content Goes Here</p> : null}
+      <ExpandableBox $isvisible={boxVisible}>
+        {activeTabData && (
+          <ExpandableContent>
+            {activeTabData.data.map((column, index) => (
+              <Column key={index}>
+                <Headline>{column.headline}</Headline>
+                <ul>
+                  {column.items.map((item, i) => (
+                    <Item key={i}>{item}</Item>
+                  ))}
+                </ul>
+              </Column>
+            ))}
+          </ExpandableContent>
+        )}
       </ExpandableBox>
     </>
   );

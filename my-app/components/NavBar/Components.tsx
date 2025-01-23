@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const HoverDiv = styled.div`
   position: relative;
   display: inline-block;
-  padding: 20px 30px;
+  padding: 20px 15px;
   text-align: center;
   cursor: pointer;
   margin: 0 5px;

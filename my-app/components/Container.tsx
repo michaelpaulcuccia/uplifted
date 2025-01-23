@@ -9,6 +9,10 @@ const ContainerWrapper = styled.div`
   margin: 0 auto;
   padding: 20px;
   width: 100%;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 interface ContainerProps {

@@ -16,12 +16,16 @@ const FlexRow = styled.div`
 `;
 
 const ExpandableBox = styled.div<{ isVisible: boolean }>`
+  position: absolute;
+  top: 80px;
+  left: 0;
   width: 100%;
   background-color: #f5f5f5;
   overflow: hidden;
   height: ${({ isVisible }) => (isVisible ? "200px" : "0")};
   transition: height 0.3s ease;
   padding: ${({ isVisible }) => (isVisible ? "20px" : "0 20px")};
+  z-index: 10;
 `;
 
 export default function NavBar() {
@@ -59,6 +63,7 @@ export default function NavBar() {
           <CiShoppingCart fontSize={28} />
         </FlexRow>
       </FlexRow>
+
       <ExpandableBox isVisible={!!activeTab}>
         {activeTab ? <p>{activeTab} Content Goes Here</p> : null}
       </ExpandableBox>

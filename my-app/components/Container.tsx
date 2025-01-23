@@ -10,7 +10,7 @@ const ContainerWrapper = styled.div`
   padding: 20px;
   width: 100%;
 
-  @media (max-width: 768px) {
+  @media (max-width: 870px) {
     display: none;
   }
 `;

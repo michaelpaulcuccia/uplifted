@@ -28,6 +28,21 @@ const ExpandableBox = styled.div<{ $isvisible: boolean }>`
   z-index: 10;
 `;
 
+const IconWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  svg {
+    font-size: 28px;
+    transition: font-size 0.3s ease;
+
+    @media (max-width: 968px) {
+      font-size: 22px;
+    }
+  }
+`;
+
 export default function NavBar() {
   const [activeTab, setActiveTab] = useState<string | null>(null);
 
@@ -58,9 +73,14 @@ export default function NavBar() {
           ))}
         </FlexRow>
         <FlexRow>
-          <PiMagnifyingGlassThin fontSize={28} />
+          {/* <PiMagnifyingGlassThin fontSize={28} />
           <CiUser fontSize={28} />
-          <CiShoppingCart fontSize={28} />
+          <CiShoppingCart fontSize={28} /> */}
+          <IconWrapper>
+            <PiMagnifyingGlassThin />
+            <CiUser />
+            <CiShoppingCart />
+          </IconWrapper>
         </FlexRow>
       </FlexRow>
 

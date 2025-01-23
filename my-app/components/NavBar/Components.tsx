@@ -24,4 +24,9 @@ export const HoverDiv = styled.div`
   &:hover::after {
     transform: translateX(-50%) scaleX(1);
   }
+
+  @media (max-width: 968px) {
+    font-size: 14px;
+    margin: 0 4px;
+  }
 `;

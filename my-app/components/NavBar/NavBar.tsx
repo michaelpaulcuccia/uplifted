@@ -45,10 +45,23 @@ const IconWrapper = styled.div`
 
 export default function NavBar() {
   const [activeTab, setActiveTab] = useState<string | null>(null);
+  const [isBoxOpen, setIsBoxOpen] = useState(false);
 
-  const handleHoverDivClick = (tabName: string) => {
-    console.log(`Clicked tab: ${tabName}`);
-    setActiveTab((prev) => (prev === tabName ? null : tabName));
+  const handleTabClick = (tabName: string) => {
+    // Toggle tab content visibility
+    if (activeTab === tabName) {
+      setIsBoxOpen(false);
+      setActiveTab(null);
+    } else {
+      setIsBoxOpen(true);
+      setActiveTab(tabName);
+    }
+  };
+
+  const handleTabHover = (tabName: string) => {
+    if (isBoxOpen) {
+      setActiveTab(tabName); // Update content if box is open
+    }
   };
 
   return (
@@ -67,24 +80,23 @@ export default function NavBar() {
             "Support",
             "Sale",
           ].map((tab) => (
-            <HoverDiv key={tab} onClick={() => handleHoverDivClick(tab)}>
+            <HoverDiv
+              key={tab}
+              onClick={() => handleTabClick(tab)}
+              onMouseEnter={() => handleTabHover(tab)}
+            >
               {tab}
             </HoverDiv>
           ))}
         </FlexRow>
-        <FlexRow>
-          {/* <PiMagnifyingGlassThin fontSize={28} />
-          <CiUser fontSize={28} />
-          <CiShoppingCart fontSize={28} /> */}
-          <IconWrapper>
-            <PiMagnifyingGlassThin />
-            <CiUser />
-            <CiShoppingCart />
-          </IconWrapper>
-        </FlexRow>
+        <IconWrapper>
+          <PiMagnifyingGlassThin />
+          <CiUser />
+          <CiShoppingCart />
+        </IconWrapper>
       </FlexRow>
 
-      <ExpandableBox $isvisible={!!activeTab}>
+      <ExpandableBox $isvisible={isBoxOpen}>
         {activeTab ? <p>{activeTab} Content Goes Here</p> : null}
       </ExpandableBox>
     </>

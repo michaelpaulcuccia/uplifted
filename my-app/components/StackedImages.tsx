@@ -6,7 +6,8 @@ const StackedContainer = styled.div`
   width: 100%;
   max-width: 1500px;
   height: 0;
-  padding-bottom: 56.25%; /* Maintain a 16:9 aspect ratio (height = width * 9 / 16) */
+  padding-bottom: 35%;
+  //padding-bottom: 56.25%; /* Maintain a 16:9 aspect ratio (height = width * 9 / 16) */
   margin: 0 auto;
   background-color: #ccc;
 `;
@@ -16,7 +17,7 @@ const Layer = styled.img`
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  //height: 100%;
   object-fit: contain; /* Prevent distortion of images */
 `;
 

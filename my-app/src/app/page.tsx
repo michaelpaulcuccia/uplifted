@@ -1,12 +1,14 @@
 "use client";
 import React from "react";
-import FullBleed from "../../components/FullBleed";
-import Container from "../../components/Container";
+import FullBleed from "../../components/layout/FullBleed";
+import Container from "../../components/layout/Container";
 import StackedImages from "../../components/StackedImages";
+import Modal from "../../components/Modal";
 
 const ParentComponent: React.FC = () => {
   return (
     <div>
+      <Modal />
       <FullBleed bgcolor="#ccc">
         <Container>
           <StackedImages />

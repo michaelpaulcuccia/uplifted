@@ -15,16 +15,29 @@ const FlexRow = styled.div`
   justify-content: space-between;
 `;
 
-const ExpandableBox = styled.div<{ isVisible: boolean }>`
+// const ExpandableBox = styled.div<{ isvisible: boolean }>`
+//   position: absolute;
+//   top: 80px;
+//   left: 0;
+//   width: 100%;
+//   background-color: #f5f5f5;
+//   overflow: hidden;
+//   height: ${({ isvisible }) => (isvisible ? "200px" : "0")};
+//   transition: height 0.3s ease;
+//   padding: ${({ isvisible }) => (isvisible ? "20px" : "0 20px")};
+//   z-index: 10;
+// `;
+
+const ExpandableBox = styled.div<{ $isvisible: boolean }>`
   position: absolute;
   top: 80px;
   left: 0;
   width: 100%;
   background-color: #f5f5f5;
   overflow: hidden;
-  height: ${({ isVisible }) => (isVisible ? "200px" : "0")};
+  height: ${({ $isvisible }) => ($isvisible ? "200px" : "0")};
   transition: height 0.3s ease;
-  padding: ${({ isVisible }) => (isVisible ? "20px" : "0 20px")};
+  padding: ${({ $isvisible }) => ($isvisible ? "20px" : "0 20px")};
   z-index: 10;
 `;
 
@@ -64,7 +77,7 @@ export default function NavBar() {
         </FlexRow>
       </FlexRow>
 
-      <ExpandableBox isVisible={!!activeTab}>
+      <ExpandableBox $isvisible={!!activeTab}>
         {activeTab ? <p>{activeTab} Content Goes Here</p> : null}
       </ExpandableBox>
     </>

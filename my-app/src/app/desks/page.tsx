@@ -7,6 +7,7 @@ import Container from "../../../components/layout/Container";
 import DeskPageHero from "../../../components/DeskPageHero";
 import DeskPageBanner from "../../../public/brand/DeskPageBanner.webp";
 import DeskCard from "../../../components/DeskCard";
+import Loader from "../../../components/Loader";
 
 type Desk = {
   filesName: string;
@@ -20,14 +21,21 @@ type Desk = {
   swatches: string[];
 };
 
-export default function page() {
+export default function Page() {
   const [desks, setDesks] = useState<Desk[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     async function fetchDesks() {
-      const res = await fetch("/api/deskcollection");
-      const data = await res.json();
-      setDesks(data);
+      try {
+        const res = await fetch("/api/deskcollection");
+        const data = await res.json();
+        setDesks(data);
+      } catch (error) {
+        console.error("Error fetching desks:", error);
+      } finally {
+        setLoading(false);
+      }
     }
     fetchDesks();
   }, []);
@@ -38,6 +46,13 @@ export default function page() {
     gap: 16px;
     padding: 20px;
   `;
+
+  // const Loader = styled.div`
+  //   text-align: center;
+  //   font-size: 1.2rem;
+  //   font-weight: bold;
+  //   padding: 40px;
+  // `;
 
   return (
     <>
@@ -57,11 +72,15 @@ export default function page() {
         />
       </Container>
       <Container>
-        <Grid>
-          {desks.map((desk) => (
-            <DeskCard key={desk.filesName} desk={desk} />
-          ))}
-        </Grid>
+        {loading ? (
+          <Loader message="Loading desks..." />
+        ) : (
+          <Grid>
+            {desks.map((desk) => (
+              <DeskCard key={desk.filesName} desk={desk} />
+            ))}
+          </Grid>
+        )}
       </Container>
     </>
   );

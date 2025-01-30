@@ -1,9 +1,9 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import Loader from "../../../../components/Loader";
+import DeskMain from "../../../../components/DeskMain";
 
 type Desk = {
   filesName: string;
@@ -21,8 +21,6 @@ export default function DeskDetailPage() {
   const { filesName } = useParams();
   const [desk, setDesk] = useState<Desk | null>(null);
   const [loading, setLoading] = useState(true);
-
-  console.log(filesName);
 
   useEffect(() => {
     async function fetchDesk() {
@@ -46,7 +44,15 @@ export default function DeskDetailPage() {
 
   return (
     <div style={{ padding: "20px" }}>
-      <h1>{desk.name}</h1>
+      <DeskMain
+        name={desk.name}
+        frameType={desk.frameType}
+        stars={desk.stars}
+        reviews={desk.reviews}
+        filesName={desk.filesName}
+      />
+
+      {/* <h1>{desk.name}</h1>
       <Image
         src={`/deskCollectionImages/${desk.filesName}.webp`}
         alt={desk.name}
@@ -70,7 +76,7 @@ export default function DeskDetailPage() {
       </p>
       <p>
         <strong>Price:</strong> ${desk.price}
-      </p>
+      </p> */}
     </div>
   );
 }

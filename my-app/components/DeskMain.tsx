@@ -1,9 +1,8 @@
-// src/app/desk/[filesName]/DeskMain.tsx
 import React from "react";
+import Image from "next/image";
 import styled from "styled-components";
 import { FaStar } from "react-icons/fa";
 
-// Define styled components
 const DeskMainContainer = styled.div`
   padding: 24px;
   border: 1px solid #eaeaea;
@@ -53,6 +52,7 @@ interface DeskMainProps {
   stars: number;
   reviews: number;
   filesName: string;
+  price: number;
 }
 
 const DeskMain: React.FC<DeskMainProps> = ({
@@ -61,6 +61,7 @@ const DeskMain: React.FC<DeskMainProps> = ({
   stars,
   reviews,
   filesName,
+  price,
 }) => {
   return (
     <DeskMainContainer>
@@ -79,6 +80,13 @@ const DeskMain: React.FC<DeskMainProps> = ({
         <BoldText>{reviews}</BoldText>
       </InfoRow>
       <DeskFileName>File Name: {filesName}</DeskFileName>
+      <Image
+        src={`/deskCollectionImages/${filesName}.webp`}
+        height={200}
+        width={300}
+        alt=""
+      />
+      <p>${price}</p>
     </DeskMainContainer>
   );
 };

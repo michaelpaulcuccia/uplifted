@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import Image from "next/image";
+import Container from "../../../../components/layout/Container";
 import Loader from "../../../../components/Loader";
 import DeskMain from "../../../../components/DeskMain";
 
@@ -43,40 +43,15 @@ export default function DeskDetailPage() {
   if (!desk) return <p>Desk not found.</p>;
 
   return (
-    <div style={{ padding: "20px" }}>
+    <Container>
       <DeskMain
         name={desk.name}
         frameType={desk.frameType}
         stars={desk.stars}
         reviews={desk.reviews}
         filesName={desk.filesName}
+        price={desk.price}
       />
-
-      {/* <h1>{desk.name}</h1>
-      <Image
-        src={`/deskCollectionImages/${desk.filesName}.webp`}
-        alt={desk.name}
-        width={500}
-        height={300}
-      />
-      <p>
-        <strong>Varieties:</strong> {desk.varieties}
-      </p>
-      <p>
-        <strong>Sizes:</strong> {desk.desktopSizes}
-      </p>
-      <p>
-        <strong>Frame Type:</strong> {desk.frameType}
-      </p>
-      <p>
-        <strong>Stars:</strong> {desk.stars} ⭐
-      </p>
-      <p>
-        <strong>Reviews:</strong> {desk.reviews}
-      </p>
-      <p>
-        <strong>Price:</strong> ${desk.price}
-      </p> */}
-    </div>
+    </Container>
   );
 }

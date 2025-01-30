@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import styled from "styled-components";
 import { FaStar } from "react-icons/fa";
 
@@ -13,6 +14,11 @@ interface DeskItem {
   price: number;
   swatches: string[];
 }
+
+// Helper function to format file names for URLs
+const formatFileName = (fileName: string) => {
+  return encodeURIComponent(fileName.replace(/\s+/g, "-").toLowerCase());
+};
 
 const Card = styled.div`
   display: flex;
@@ -58,12 +64,14 @@ const Stars = styled.div`
 export default function DeskCard({ desk }: { desk: DeskItem }) {
   return (
     <Card>
-      <DeskImage
-        src={`/deskCollectionImages/${desk.filesName}.webp`}
-        alt={desk.name}
-        width={300}
-        height={200}
-      />
+      <Link href={`/desk/${formatFileName(desk.name)}`} passHref>
+        <DeskImage
+          src={`/deskCollectionImages/${desk.filesName}.webp`}
+          alt={desk.name}
+          width={300}
+          height={200}
+        />
+      </Link>
 
       <SwatchContainer>
         {desk.swatches.map((swatch) => (

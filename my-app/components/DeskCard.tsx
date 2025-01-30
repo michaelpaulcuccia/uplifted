@@ -15,9 +15,8 @@ interface DeskItem {
   swatches: string[];
 }
 
-// Helper function to format file names for URLs
 const formatFileName = (fileName: string) => {
-  return encodeURIComponent(fileName.replace(/\s+/g, "-").toLowerCase());
+  return fileName.toLowerCase();
 };
 
 const Card = styled.div`
@@ -64,7 +63,7 @@ const Stars = styled.div`
 export default function DeskCard({ desk }: { desk: DeskItem }) {
   return (
     <Card>
-      <Link href={`/desk/${formatFileName(desk.name)}`} passHref>
+      <Link href={`/desk/${formatFileName(desk.filesName)}`} passHref>
         <DeskImage
           src={`/deskCollectionImages/${desk.filesName}.webp`}
           alt={desk.name}

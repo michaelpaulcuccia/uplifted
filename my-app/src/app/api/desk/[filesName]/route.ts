@@ -7,12 +7,11 @@ export async function GET(
 ) {
   const { filesName } = params;
 
-  // Normalize the filesName (assuming it's coming from the formatted URL)
+  // Normalize the filesName - the URL is formatted to lowercase
   const normalizedFileName = decodeURIComponent(filesName)
     .replace(/-/g, " ")
     .toLowerCase();
 
-  // Find the desk by filesName
   const desk = deskCollection.find(
     (item) => item.filesName.toLowerCase() === normalizedFileName
   );

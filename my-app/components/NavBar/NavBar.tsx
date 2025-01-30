@@ -1,12 +1,12 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
 import Logo from "../../public/brand/upliftHeaderLogo.svg";
 import { PiMagnifyingGlassThin } from "react-icons/pi";
-import { CiUser } from "react-icons/ci";
-import { CiShoppingCart } from "react-icons/ci";
+import { CiUser, CiShoppingCart } from "react-icons/ci";
 import {
   HoverDiv,
   FlexRow,
@@ -34,21 +34,25 @@ const ExpandableBox = styled.div<{ $isvisible: boolean }>`
 export default function NavBar() {
   const [activeTab, setActiveTab] = useState<string | null>(null);
   const [boxVisible, setBoxVisible] = useState<boolean>(false);
+  const pathname = usePathname();
+
+  // Close the expandable box when the route changes
+  useEffect(() => {
+    setBoxVisible(false);
+    setActiveTab(null);
+  }, [pathname]);
 
   const handleHoverOrClick = (tabName: string) => {
     if (activeTab === tabName) {
-      // Close the box if clicking the currently active tab
       setBoxVisible(false);
       setActiveTab(null);
     } else {
-      // Open or switch content
       setBoxVisible(true);
       setActiveTab(tabName);
     }
   };
 
   const handleHover = (tabName: string) => {
-    // Update content on hover if the box is already open
     if (boxVisible && activeTab !== tabName) {
       setActiveTab(tabName);
     }
@@ -98,7 +102,9 @@ export default function NavBar() {
                 <Headline>{column.headline}</Headline>
                 <ul>
                   {column.items.map((item, i) => (
-                    <Item key={i}>{item}</Item>
+                    <Link key={i} href="/desks">
+                      <Item>{item}</Item>
+                    </Link>
                   ))}
                 </ul>
               </Column>

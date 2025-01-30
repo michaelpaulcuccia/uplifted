@@ -3,22 +3,37 @@ import { deskCollection } from "../../../../../data";
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { filesName: string } }
+  context: { params: Promise<{ filesName: string }> }
 ) {
-  const { filesName } = params;
+  try {
+    // Await the params object to resolve it
+    const params = await context.params;
 
-  // Normalize the filesName - the URL is formatted to lowercase
-  const normalizedFileName = decodeURIComponent(filesName)
-    .replace(/-/g, " ")
-    .toLowerCase();
+    // Ensure params exist before destructuring
+    if (!params || !params.filesName) {
+      return NextResponse.json({ error: "Invalid request" }, { status: 400 });
+    }
 
-  const desk = deskCollection.find(
-    (item) => item.filesName.toLowerCase() === normalizedFileName
-  );
+    // Destructure params safely
+    const { filesName } = params;
 
-  if (!desk) {
-    return NextResponse.json({ error: "Desk not found" }, { status: 404 });
+    // Normalize filesName to match stored format
+    const normalizedFileName = decodeURIComponent(filesName)
+      .replace(/-/g, " ")
+      .toLowerCase();
+
+    // Search for the desk in the collection
+    const desk = deskCollection.find(
+      (item) => item.filesName.toLowerCase() === normalizedFileName
+    );
+
+    if (!desk) {
+      return NextResponse.json({ error: "Desk not found" }, { status: 404 });
+    }
+
+    return NextResponse.json(desk);
+  } catch (error) {
+    console.error("API Error:", error);
+    return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
-
-  return NextResponse.json(desk);
 }

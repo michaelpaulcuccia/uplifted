@@ -6,9 +6,12 @@ import {
   LeftSideContent,
   RightSideContent,
   DeskTitle,
-  DeskDetails,
   InfoRow,
   Stars,
+  ReviewText,
+  ImageWrapper,
+  PriceContainer,
+  VerticalLine,
 } from "./Components";
 
 interface SingleDeskDisplayProps {
@@ -32,30 +35,43 @@ const SingleDeskDisplay: React.FC<SingleDeskDisplayProps> = ({
     <SingleDeskContainer>
       <LeftSideContent>
         <DeskTitle>{name}</DeskTitle>
-        <InfoRow>
-          <DeskDetails>Frame Type: {frameType}</DeskDetails>
-        </InfoRow>
+        <InfoRow>Frame Type: {frameType}</InfoRow>
         <InfoRow>
           <Stars>
             {[...Array(stars)].map((_, index) => (
               <FaStar key={index} color="gold" size={18} />
             ))}
           </Stars>{" "}
-          <span style={{ marginLeft: "6px", marginRight: "3px" }}>
+          <ReviewText>
             {reviews}
-          </span>{" "}
-          Reviews
+            <span>Reviews</span>
+          </ReviewText>
         </InfoRow>
-        <InfoRow></InfoRow>
-        <Image
-          src={`/deskCollectionImages/${filesName}.webp`}
-          height={300}
-          width={400}
-          alt=""
-        />
+        <ImageWrapper>
+          <Image
+            src={`/deskCollectionImages/${filesName}.webp`}
+            style={{ borderRadius: "8px" }}
+            layout="intrinsic"
+            height={400}
+            width={500}
+            alt=""
+          />
+        </ImageWrapper>
       </LeftSideContent>
       <RightSideContent>
-        <p>${price}</p>
+        <PriceContainer>
+          <div className="top-section">
+            <div>
+              <h3>${price}</h3>
+              <p className="small-text">Starting at $64/mo or 0% APR</p>
+            </div>
+            <VerticalLine></VerticalLine>
+            <p>
+              Ships same business day if ordered by
+              <br /> 3pm Central
+            </p>
+          </div>
+        </PriceContainer>
       </RightSideContent>
     </SingleDeskContainer>
   );

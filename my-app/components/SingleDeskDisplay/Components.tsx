@@ -13,19 +13,10 @@ export const LeftSideContent = styled.div`
   width: 50%;
 `;
 
-export const RightSideContent = styled.div`
-  width: 50%;
-`;
-
 export const DeskTitle = styled.h1`
-  font-size: 1.5rem;
+  font-size: 26px;
   font-weight: 600;
   margin-bottom: 16px;
-`;
-
-export const DeskDetails = styled.p`
-  font-size: 1.125rem;
-  margin-bottom: 8px;
 `;
 
 export const InfoRow = styled.div`
@@ -37,4 +28,53 @@ export const InfoRow = styled.div`
 export const Stars = styled.div`
   display: flex;
   gap: 4px;
+`;
+
+export const ReviewText = styled.p`
+  color: #06a7ea;
+  font-size: 14px;
+  margin-left: 6px;
+
+  span {
+    margin-left: 3px;
+  }
+`;
+
+export const ImageWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 70px;
+`;
+
+export const RightSideContent = styled.div`
+  width: 50%;
+`;
+
+export const PriceContainer = styled.div`
+  display: flex;
+  padding: 0 30px;
+
+  .top-section {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+
+  h3 {
+    font-size: 28px;
+    font-weight: 300;
+    margin-bottom: 8px;
+  }
+
+  .small-text {
+    font-size: 11px;
+  }
+`;
+
+export const VerticalLine = styled.div`
+  width: 1px;
+  height: 100%;
+  background-color: #ccc; /* Light gray, change as needed */
 `;

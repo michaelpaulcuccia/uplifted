@@ -12,6 +12,7 @@ import {
   ImageWrapper,
   PriceContainer,
   VerticalLine,
+  FreeRow,
 } from "./Components";
 
 interface SingleDeskDisplayProps {
@@ -72,6 +73,19 @@ const SingleDeskDisplay: React.FC<SingleDeskDisplayProps> = ({
             </p>
           </div>
         </PriceContainer>
+        <FreeRow>
+          <p>
+            <u>FREE SHIPPING</u>
+          </p>
+          <VerticalLine></VerticalLine>
+          <p>
+            <u>FREE Returns with Free Shipping</u>
+          </p>
+          <VerticalLine></VerticalLine>
+          <p>
+            <u>15-Year Warranty</u>
+          </p>
+        </FreeRow>
       </RightSideContent>
     </SingleDeskContainer>
   );

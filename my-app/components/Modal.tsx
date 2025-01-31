@@ -78,6 +78,12 @@ const Modal = () => {
             fully responsive experience in the near future!
           </p>
 
+          <p>
+            Please click on ANY ITEM in the Navigation Bar to view a collection
+            of desks. Please click on any desk to see more details about that
+            product.
+          </p>
+
           <p>Check back for more updates!</p>
 
           <AcceptButton onClick={closeModal}>Accept</AcceptButton>

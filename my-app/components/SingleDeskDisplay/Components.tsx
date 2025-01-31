@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Image from "next/image";
 
 export const SingleDeskContainer = styled.div`
   display: flex;
@@ -104,4 +105,16 @@ export const StyleContainer = styled.div`
   span {
     color: #06a7ea;
   }
+`;
+
+export const SwatchContainer = styled.div`
+  display: flex;
+  gap: 8px;
+  margin: 10px 0;
+`;
+
+export const Swatch = styled(Image)`
+  width: 35px;
+  height: 35px;
+  border: 1px solid #ddd;
 `;

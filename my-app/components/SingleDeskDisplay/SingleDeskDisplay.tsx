@@ -14,6 +14,8 @@ import {
   VerticalLine,
   FreeRow,
   StyleContainer,
+  SwatchContainer,
+  Swatch,
 } from "./Components";
 
 interface SingleDeskDisplayProps {
@@ -23,6 +25,7 @@ interface SingleDeskDisplayProps {
   reviews: number;
   filesName: string;
   price: number;
+  swatches: string[];
 }
 
 const SingleDeskDisplay: React.FC<SingleDeskDisplayProps> = ({
@@ -32,6 +35,7 @@ const SingleDeskDisplay: React.FC<SingleDeskDisplayProps> = ({
   reviews,
   filesName,
   price,
+  swatches,
 }) => {
   return (
     <SingleDeskContainer>
@@ -95,6 +99,17 @@ const SingleDeskDisplay: React.FC<SingleDeskDisplayProps> = ({
             Watch the <span>UPLIFT Desktops video</span> for an overview of
             every desktop offered.
           </p>
+          <SwatchContainer>
+            {swatches.map((swatch) => (
+              <Swatch
+                key={swatch}
+                src={`/tiles/${swatch}.webp`}
+                alt={swatch}
+                width={25}
+                height={25}
+              />
+            ))}
+          </SwatchContainer>
         </StyleContainer>
       </RightSideContent>
     </SingleDeskContainer>

@@ -51,6 +51,7 @@ export default function DeskDetailPage() {
         reviews={desk.reviews}
         filesName={desk.filesName}
         price={desk.price}
+        swatches={desk.swatches}
       />
     </Container>
   );

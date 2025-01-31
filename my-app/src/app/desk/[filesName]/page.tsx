@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Container from "../../../../components/layout/Container";
 import Loader from "../../../../components/Loader";
-import DeskMain from "../../../../components/DeskMain";
+import { SingleDeskDisplay } from "../../../../components/SingleDeskDisplay";
 
 type Desk = {
   filesName: string;
@@ -44,7 +44,7 @@ export default function DeskDetailPage() {
 
   return (
     <Container>
-      <DeskMain
+      <SingleDeskDisplay
         name={desk.name}
         frameType={desk.frameType}
         stars={desk.stars}

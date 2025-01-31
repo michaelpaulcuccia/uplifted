@@ -22,7 +22,7 @@ const formatFileName = (fileName: string) => {
 const Card = styled.div`
   display: flex;
   flex-direction: column;
-  width: 300px;
+  width: 332px;
   padding: 16px;
   border-radius: 10px;
   background: #fff;

@@ -13,6 +13,7 @@ import {
   PriceContainer,
   VerticalLine,
   FreeRow,
+  StyleContainer,
 } from "./Components";
 
 interface SingleDeskDisplayProps {
@@ -86,6 +87,15 @@ const SingleDeskDisplay: React.FC<SingleDeskDisplayProps> = ({
             <u>15-Year Warranty</u>
           </p>
         </FreeRow>
+        <StyleContainer>
+          <DeskTitle>Desktop Style</DeskTitle>
+          <p className="desktop-style-text">
+            See the <span>Desktop Lookbook </span>for more info & pictures.
+            <br />
+            Watch the <span>UPLIFT Desktops video</span> for an overview of
+            every desktop offered.
+          </p>
+        </StyleContainer>
       </RightSideContent>
     </SingleDeskContainer>
   );

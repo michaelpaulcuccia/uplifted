@@ -75,7 +75,6 @@ export const PriceContainer = styled.div`
 
 export const VerticalLine = styled.div`
   width: 1px;
-  //height: 100%;
   align-self: stretch; //using this instead of height
   background-color: #ccc;
   margin: 0 8px;
@@ -91,5 +90,18 @@ export const FreeRow = styled.div`
 
   p {
     font-size: 11px;
+  }
+`;
+
+export const StyleContainer = styled.div`
+  margin-top: 60px;
+  padding: 0 30px;
+
+  .desktop-style-text {
+    line-height: 20px;
+  }
+
+  span {
+    color: #06a7ea;
   }
 `;

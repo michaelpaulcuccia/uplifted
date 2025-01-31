@@ -6,7 +6,7 @@ import FullBleed from "../../../components/layout/FullBleed";
 import Container from "../../../components/layout/Container";
 import DeskPageHero from "../../../components/DeskPageHero";
 import DeskPageBanner from "../../../public/brand/DeskPageBanner.webp";
-import DeskCard from "../../../components/DeskCard";
+import { DeskCard } from "../../../components/DeskCard";
 import Loader from "../../../components/Loader";
 
 type Desk = {

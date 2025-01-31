@@ -1,7 +1,13 @@
-import Image from "next/image";
 import Link from "next/link";
-import styled from "styled-components";
 import { FaStar } from "react-icons/fa";
+import {
+  Card,
+  DeskImage,
+  SwatchContainer,
+  Swatch,
+  Info,
+  Stars,
+} from "./Components";
 
 interface DeskItem {
   filesName: string;
@@ -18,47 +24,6 @@ interface DeskItem {
 const formatFileName = (fileName: string) => {
   return fileName.toLowerCase();
 };
-
-const Card = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 332px;
-  padding: 16px;
-  border-radius: 10px;
-  background: #fff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-`;
-
-const DeskImage = styled(Image)`
-  border-radius: 8px;
-`;
-
-const SwatchContainer = styled.div`
-  display: flex;
-  gap: 8px;
-  margin: 10px 0;
-`;
-
-const Swatch = styled(Image)`
-  width: 35px;
-  height: 35px;
-  border: 1px solid #ddd;
-`;
-
-const Info = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  margin: 10px 0;
-  font-size: 14px;
-  color: #333;
-`;
-
-const Stars = styled.div`
-  display: flex;
-  gap: 4px;
-  margin-top: 8px;
-`;
 
 export default function DeskCard({ desk }: { desk: DeskItem }) {
   return (
